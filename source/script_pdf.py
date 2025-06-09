@@ -1,16 +1,20 @@
 import os.path
-
 from pypdf import PdfReader
+from utils.paths import DIR_WITH_RESOURCES
 
-reader = PdfReader("tmp/Python Testing with Pytest (Brian Okken).pdf")
+
+file_pdf = os.path.join(DIR_WITH_RESOURCES, "hw_file_pdf.pdf")
+reader = PdfReader(file_pdf)
 
 print(reader.pages)
 print(len(reader.pages))
 
-print(reader.pages[1].extract_text())
+# в файле только картинки, а библиотека не работает с ними
+# print(reader.pages[1].extract_text())
 
-assert "Simple, Rapid, Effective, and Scalable" in reader.pages[1]
-print(os.path.getsize(
-	"../../../Downloads/qa_guru_python_9_7_files-master/tmp/Python Testing with Pytest (Brian Okken).pdf"))
-assert os.path.getsize(
-	"../../../Downloads/qa_guru_python_9_7_files-master/tmp/Python Testing with Pytest (Brian Okken).pdf") == 3035139
+page_count = 2
+
+assert page_count == len(reader.pages)
+print(os.path.getsize(file_pdf))
+
+assert os.path.getsize(file_pdf) == 175913

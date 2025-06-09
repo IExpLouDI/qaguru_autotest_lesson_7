@@ -1,6 +1,11 @@
+import os.path
 from zipfile import ZipFile
+from utils.paths import DIR_WITH_RESOURCES_DOWNLOADS
 
-with ZipFile("tmp/hello.zip") as zip_file:
+
+add_file = os.path.join(DIR_WITH_RESOURCES_DOWNLOADS + "hello.zip")
+
+with ZipFile(add_file) as zip_file:
     print(zip_file.namelist())
     text = zip_file.read('Hello.txt')
     print(text)
