@@ -39,6 +39,6 @@ def test_text_in_downloaded_file_by_saving_file_from_api_url():
     with open(os.path.join(DIR_WITH_RESOURCES_DOWNLOADS, "readme2.rts"), 'wb') as file:
         file.write(content)
 
-    with open(f"{DIR_WITH_RESOURCES_DOWNLOADS}/readme2.rst") as file:
+    with open(os.path.join(DIR_WITH_RESOURCES_DOWNLOADS, "readme2.rts")) as file:
         file_content_str = file.read()
         assert "test_answer" in file_content_str
