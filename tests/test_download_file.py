@@ -5,7 +5,7 @@ import requests
 from selene import query
 from selene.support.shared import browser
 from selenium import webdriver
-from config import DIR_WITH_RESOURCES_DOWNLOADS
+from utils.paths import DIR_WITH_RESOURCES_DOWNLOADS
 # from selenium.webdriver.chrome.service import Service убран по ненадобности
 # from webdriver_manager.chrome import ChromeDriverManager убран по ненадобности
 

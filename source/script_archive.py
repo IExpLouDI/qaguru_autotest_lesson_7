@@ -1,6 +1,6 @@
 import os.path
 from zipfile import ZipFile
-from config import DIR_WITH_RESOURCES_DOWNLOADS
+from utils.paths import DIR_WITH_RESOURCES_DOWNLOADS
 
 
 add_file = os.path.join(DIR_WITH_RESOURCES_DOWNLOADS + "hello.zip")

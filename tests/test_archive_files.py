@@ -1,6 +1,8 @@
 from zipfile import ZipFile
-from config import DIR_WITH_RESOURCES
 import os
+
+from utils.paths import DIR_WITH_RESOURCES
+from utils.command import check_result
 
 
 def test_create_archive_and_check_in_directory():
@@ -22,5 +24,21 @@ def test_create_archive_and_check_in_directory():
 	assert file_archive in os.listdir(DIR_WITH_RESOURCES)
 
 
-def test_check_files_in_archive():
-	pass
+def test_check_files_in_archive(get_instructions):
+
+	zip_in_directory = [file for file in os.listdir(DIR_WITH_RESOURCES) if file.endswith(".zip")]
+	assert len(zip_in_directory) == 1 , f"В дирректории {DIR_WITH_RESOURCES} более одного архива {zip_in_directory}"
+
+	with ZipFile(os.path.join(DIR_WITH_RESOURCES, zip_in_directory[0])) as zip_file:  # открываем архив
+		files_in_zip = zip_file.namelist()
+
+		for _i, file in enumerate(files_in_zip):
+			f_type = "." + file.split(".")[1]
+			with zip_file.open(file) as opened_file:
+				# не всё так просто с .xls
+				if f_type != '.xls':
+					check = check_result(f_type, get_instructions[f_type], opened_file)
+				else:
+					check = check_result(f_type, get_instructions[f_type], opened_file.read())
+
+				assert True == check[0], check[1]

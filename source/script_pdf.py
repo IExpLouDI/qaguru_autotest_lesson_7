@@ -1,6 +1,6 @@
 import os.path
 from pypdf import PdfReader
-from config import DIR_WITH_RESOURCES
+from utils.paths import DIR_WITH_RESOURCES
 
 
 file_pdf = os.path.join(DIR_WITH_RESOURCES, "hw_file_pdf.pdf")
