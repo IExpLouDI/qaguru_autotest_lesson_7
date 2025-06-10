@@ -2,9 +2,7 @@ import os
 from xlrd import open_workbook
 from openpyxl import load_workbook
 from pypdf import PdfReader
-
 from source.script_xls import FileInfoXls
-
 
 
 def check_result(f_type: str, instruction: dict, _object):
