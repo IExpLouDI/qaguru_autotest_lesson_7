@@ -24,7 +24,7 @@ def test_create_archive_and_check_in_directory():
 	assert file_archive in os.listdir(DIR_WITH_RESOURCES)
 
 
-def test_exists_zip_file_in_directory(save_dic_in_directory):
+def test_exists_zip_in_directory(save_dic_in_directory):
 	files = os.listdir(DIR_WITH_RESOURCES)
 	assert 1 == 1
 

@@ -46,7 +46,6 @@ def save_dic_in_directory():
 		for file in files_in_resources:
 			if "zip" not in file:
 				zip_f.write(os.path.join(DIR_WITH_RESOURCES, file), arcname=file)
-	zip_f.close()
 
 	yield path_file_archive
 
