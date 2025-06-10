@@ -13,6 +13,7 @@ def clear_dir():
 	os.remove(file_path[0])
 
 
+# Not support. Оставлена для примера "Как не надо делать"
 @pytest.fixture(scope="function")
 def get_instructions():
 	"""Проверка содержимого файлов после открытия архива"""
