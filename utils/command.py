@@ -2,11 +2,10 @@ import os
 from xlrd import open_workbook
 from openpyxl import load_workbook
 from pypdf import PdfReader
-
 from source.script_xls import FileInfoXls
 
 
-
+# not support
 def check_result(f_type: str, instruction: dict, _object):
 	keys = instruction.keys()
 
@@ -21,7 +20,8 @@ def check_result(f_type: str, instruction: dict, _object):
 	elif f_type == ".pdf":
 		reader = PdfReader(_object)
 		res_dict = {
-			"page_count": len(reader.pages)
+			"page_count": len(reader.pages),
+			"page_text": reader.pages[1].extract_text()
 		}
 
 	for key in keys:
@@ -30,3 +30,23 @@ def check_result(f_type: str, instruction: dict, _object):
 						   f"\nExpected - {instruction[key]}, but - {res_dict[key]} given!"]
 
 	return [True, "Congratulations"]
+
+
+def file_content(f_type: str, _object):
+
+	if f_type == ".xls":
+		book = open_workbook(file_contents=_object)
+		info_xls = FileInfoXls(book)
+		res_dict = info_xls.get_file_info()
+	elif f_type == ".xlsx":
+		book = load_workbook(_object)
+		sheet = book.active
+		res_dict = {"value_3_2": sheet.cell(row=3, column=2).value}
+	elif f_type == ".pdf":
+		reader = PdfReader(_object)
+		res_dict = {
+			"page_count": len(reader.pages),
+			"page_text": reader.pages[1].extract_text()
+		}
+
+	return res_dict
