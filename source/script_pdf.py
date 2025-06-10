@@ -12,9 +12,11 @@ print(len(reader.pages))
 # в файле только картинки, а библиотека не работает с ними
 # print(reader.pages[1].extract_text())
 
-page_count = 56
+page_count = 10
+text = reader.pages[1].extract_text()
+assert "Тестовый PDF файл " in text
 
 assert page_count == len(reader.pages)
 print(os.path.getsize(file_pdf))
 
-assert os.path.getsize(file_pdf) == 425786
+assert os.path.getsize(file_pdf) == 64094
